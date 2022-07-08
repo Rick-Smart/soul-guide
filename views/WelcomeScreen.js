@@ -1,49 +1,62 @@
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
+import AppCard from "../components/AppCard";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
-    <Screen>
-      <ImageBackground
-        style={styles.background}
-        source={require("../assets/bell-rock-bg.jpg")}
-      >
+    <ImageBackground
+      style={styles.ImageBackground}
+      //   blurRadius={1}
+      source={require("../assets/bell-rock-bg.jpg")}
+    >
+      <Screen style={styles.screen}>
         <View style={styles.logoContainer}>
           <Image
             source={require("../assets/logo-white-find-yourself.png")}
             style={styles.logo}
           />
         </View>
-        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
-        <AppButton
-          title="Register"
-          color="secondary"
-          onPress={() => navigation.navigate("Register")}
-        />
-      </ImageBackground>
-    </Screen>
+
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Login"
+            onPress={() => navigation.navigate("Login")}
+          />
+          <AppButton
+            title="Register"
+            color="secondary"
+            onPress={() => navigation.navigate("Register")}
+          />
+        </View>
+      </Screen>
+    </ImageBackground>
   );
 };
 
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  background: {
+  ImageBackground: {
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
   },
-  logo: {
-    height: 300,
-    resizeMode: "contain",
-    width: 300,
+  screen: {
+    justifyContent: "flex-end",
+  },
+  buttonContainer: {
+    width: "100%",
   },
   logoContainer: {
+    width: "100%",
     alignItems: "center",
     position: "absolute",
     top: 50,
+  },
+  logo: {
+    resizeMode: "contain",
+    width: 300,
+    height: 300,
   },
 });
