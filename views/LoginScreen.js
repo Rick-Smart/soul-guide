@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import Screen from "../components/Screen";
+import AppButton from "../components/AppButton";
 
 import colors from "../config/colors";
 
@@ -11,8 +12,8 @@ const LoginScreen = ({ navigation }) => {
         style={styles.background}
         source={require("../assets/bell-rock-bg.jpg")}
       >
-        <View style={styles.loginButton}></View>
-        <View style={styles.registerButton}></View>
+        <AppButton title="Login" />
+        <AppButton title="Register" color="secondary" />
       </ImageBackground>
     </Screen>
   );
@@ -24,15 +25,5 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: "flex-end",
-  },
-  loginButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.primary,
-  },
-  registerButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.secondary,
   },
 });
