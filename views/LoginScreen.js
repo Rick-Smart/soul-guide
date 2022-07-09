@@ -14,8 +14,6 @@ import colors from "../config/colors";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
-  console.log(email);
-  console.log(password);
 
   return (
     <ImageBackground
@@ -49,8 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   screen: {
-    flex: 1,
-    alignItems: "center",
     justifyContent: "flex-end",
   },
   buttonContainer: {

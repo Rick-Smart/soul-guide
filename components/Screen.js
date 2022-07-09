@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
     flex: 1,
-    alignItems: "center",
   },
   view: {
+    alignItems: "center",
     flex: 1,
     width: "100%",
     padding: 10,
