@@ -9,4 +9,5 @@ export default {
   danger: "#ff5252",
   dark: "#1F1214",
   soft: "#CFB6AA",
+  medium: "#6e6969",
 };

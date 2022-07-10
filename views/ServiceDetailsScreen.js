@@ -5,6 +5,7 @@ import Screen from "../components/Screen";
 import AppText from "../components/AppText";
 
 import colors from "../config/colors";
+import ListItem from "../components/ListItem";
 
 const ServiceDetailsScreen = () => {
   return (
@@ -14,8 +15,15 @@ const ServiceDetailsScreen = () => {
         source={require("../assets/bell-rock-bg.jpg")}
       />
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Massage</AppText>
+        <AppText style={styles.title}>App Services</AppText>
         <AppText style={styles.price}>$100</AppText>
+      </View>
+      <View style={styles.userContainer}>
+        <ListItem
+          title="Rick"
+          subTitle="App Developer"
+          image={require("../assets/profile-image.jpg")}
+        />
       </View>
     </Screen>
   );
@@ -40,7 +48,11 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
     fontWeight: "bold",
-    color: colors.secondary,
+    color: colors.dark,
     marginVertical: 10,
+  },
+  userContainer: {
+    marginVertical: 40,
+    alignSelf: "flex-start",
   },
 });
