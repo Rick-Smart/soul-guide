@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     padding: 20,
-    alignSelf: "flex-start",
   },
   title: {
     fontSize: 24,
@@ -53,6 +52,5 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     marginVertical: 40,
-    alignSelf: "flex-start",
   },
 });
