@@ -1,12 +1,9 @@
 import React from "react";
 import { StyleSheet, View, ImageBackground, Image } from "react-native";
-import { Formik } from "formik";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import AppFormField from "../components/AppFormField";
-import SubmitButton from "../components/SubmitButton";
-import AppForm from "../components/AppForm";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -79,7 +76,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     resizeMode: "contain",
-    width: 300,
-    height: 300,
+    width: 150,
+    height: 150,
   },
 });

@@ -3,7 +3,6 @@ import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
-import AppCard from "../components/AppCard";
 
 const WelcomeScreen = ({ navigation }) => {
   return (

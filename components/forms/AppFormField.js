@@ -2,20 +2,15 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { useFormikContext } from "formik";
 
-import AppTextInput from "./AppTextInput";
+import AppTextInput from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
-const AppFormField = ({ name, ...otherProps }) => {
+const AppFormField = ({ name, width, ...otherProps }) => {
   const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
   return (
     <>
       <AppTextInput
-        // autoCapitalize="none"
-        // autoCorrect={false}
-        // placeholder="Email"
-        // keyboardType="email-address"
-        // icon="email"
-        // textContentType="emailAddress"
+        width={width}
         {...otherProps}
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
