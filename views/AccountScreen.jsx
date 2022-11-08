@@ -11,6 +11,7 @@ import colors from "../config/colors";
 const menuItems = [
   {
     title: "My Appointments",
+    nav: "Services",
     icon: {
       name: "format-list-bulleted",
       backgroundColor: colors.primary,
@@ -18,6 +19,7 @@ const menuItems = [
   },
   {
     title: "My Messages",
+    nav: "Messages",
     icon: {
       name: "email",
       backgroundColor: colors.secondary,
@@ -25,7 +27,7 @@ const menuItems = [
   },
 ];
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
   return (
     <ImageBackground
       source={require("../assets/bell-rock-bg.jpg")}
@@ -47,7 +49,7 @@ const AccountScreen = () => {
             renderItem={({ item }) => (
               <ListItem
                 title={item.title}
-                onPress={() => console.log(item.title)}
+                onPress={() => navigation.navigate(item.nav)}
                 ImageComponent={
                   <AppIcon
                     name={item.icon.name}
@@ -58,7 +60,7 @@ const AccountScreen = () => {
             )}
           />
         </View>
-        <View style={styles.container}>
+        <View style={styles.logOut}>
           <ListItem
             title="Log Out"
             onPress={() => console.log("Log Out")}
@@ -81,5 +83,12 @@ const styles = StyleSheet.create({
   },
   ImageBackground: {
     flex: 1,
+  },
+  logOut: {
+    marginVertical: 20,
+    backgroundColor: "rgba(248, 244, 244, 0.75)",
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 });

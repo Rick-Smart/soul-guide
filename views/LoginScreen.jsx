@@ -11,6 +11,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
+  const handleLogin = (values) => {
+    // This is currently in place of our server side validation and login info
+    // once received from our Server we'll store this info in our redux store for use across the app
+    console.log(values);
+    navigation.navigate("AppNavigator");
+  };
+
   return (
     <ImageBackground
       style={styles.ImageBackground}
@@ -26,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
 
         <AppForm
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => handleLogin(values)}
           validationSchema={validationSchema}
         >
           <AppFormField

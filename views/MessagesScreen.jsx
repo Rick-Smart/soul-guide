@@ -7,28 +7,32 @@ import ListItemSeparator from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 
+// This data will be pulled from the Server on login and stored in our redux store.
 const messagelist = [
   {
     id: 1,
     title: "message title 1",
     description: "message description",
     image: require("../assets/profile-image.jpg"),
+    message: "Welcome to the wonderful world of debugging lol!",
   },
   {
     id: 2,
     title: "message title 2",
     description: "message description",
     image: require("../assets/profile-image.jpg"),
+    message: "Howdy doodie!",
   },
   {
     id: 3,
     title: "message title 3",
     description: "message description",
     image: require("../assets/profile-image.jpg"),
+    message: "Hello new user!",
   },
 ];
 
-const MessagesScreen = () => {
+const MessagesScreen = ({ navigation }) => {
   const [messages, setMessages] = useState(messagelist);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -46,7 +50,11 @@ const MessagesScreen = () => {
             title={item.title}
             image={item.image}
             subTitle={item.description}
-            onPress={() => console.log("message Selected", item)}
+            onPress={() =>
+              navigation.navigate("MessageDetails", {
+                details: item,
+              })
+            }
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}

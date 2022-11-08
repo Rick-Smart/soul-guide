@@ -5,7 +5,8 @@ import { useFonts } from "expo-font";
 import WelcomeScreen from "../views/WelcomeScreen";
 import LoginScreen from "../views/LoginScreen";
 import RegisterScreen from "../views/RegisterScreen";
-import AccountScreen from "../views/AccountScreen";
+
+import AppNavigator from "./AppNavigator";
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ const AuthNavigator = () => {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Account" component={AccountScreen} />
+        <Stack.Screen name="AppNavigator" component={AppNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

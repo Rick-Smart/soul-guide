@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 15,
     alignItems: "center",
+    borderRadius: 15,
   },
   detailsContainer: {
     flex: 1,
