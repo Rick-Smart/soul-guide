@@ -15,6 +15,7 @@ export default ErrorMessage;
 
 const styles = StyleSheet.create({
   errorMessage: {
-    color: defaultStyles.colors.danger,
+    color: defaultStyles.colors.white,
+    fontWeight: "700",
   },
 });

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, ImageBackground, Image } from "react-native";
 import * as Yup from "yup";
+import authApi from "../api/auth";
+import jwtDecode from "jwt-decode";
 
 import Screen from "../components/Screen";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import {
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  ErrorMessage,
+} from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -11,11 +18,18 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
-  const handleLogin = (values) => {
-    // This is currently in place of our server side validation and login info
-    // once received from our Server we'll store this info in our redux store for use across the app
-    console.log(values);
-    navigation.navigate("AppNavigator");
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  // this is where our login logic is happening
+  const handleLogin = async (values) => {
+    const result = await authApi.loginUser(values);
+    if (!result.ok) return setLoginFailed(result.problem);
+
+    setLoginFailed(false);
+    console.log("Result.data: " + result.data);
+    const user = JSON.stringify(jwtDecode(result.data));
+    console.log("User decoded: " + user);
+    // navigation.navigate("AppNavigator");
   };
 
   return (
@@ -33,9 +47,15 @@ const LoginScreen = ({ navigation }) => {
 
         <AppForm
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => handleLogin(values)}
+          onSubmit={handleLogin}
           validationSchema={validationSchema}
         >
+          <View style={styles.ErrorMessage}>
+            <ErrorMessage
+              error="Invalid Email/Password"
+              visible={loginFailed}
+            />
+          </View>
           <AppFormField
             name="email"
             autoCapitalize="none"
@@ -85,5 +105,8 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: 150,
     height: 150,
+  },
+  ErrorMessage: {
+    alignItems: "center",
   },
 });

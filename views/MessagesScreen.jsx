@@ -1,11 +1,13 @@
-import { FlatList, StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
 
 import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
+
+import messagesApi from "../api/messages";
 
 // This data will be pulled from the Server on login and stored in our redux store.
 const messagelist = [
@@ -35,6 +37,15 @@ const messagelist = [
 const MessagesScreen = ({ navigation }) => {
   const [messages, setMessages] = useState(messagelist);
   const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    loadMessages();
+  }, []);
+
+  const loadMessages = async () => {
+    const response = messagesApi.getMessages();
+    setMessages(response.data);
+  };
 
   const handleDelete = (message) => {
     setMessages(messages.filter((item) => item.id !== message.id));
