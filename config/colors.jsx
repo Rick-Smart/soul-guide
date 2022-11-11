@@ -11,4 +11,5 @@ export default {
   dark: "#1F1214",
   soft: "#CFB6AA",
   medium: "#6e6969",
+  whiteTransparent: "rgba(255,255,255,0.5)",
 };

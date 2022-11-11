@@ -1,18 +1,74 @@
 import React from "react";
-import AppText from "../components/AppText";
+import { View, StyleSheet, ScrollView } from "react-native";
 
+import AppText from "../components/AppText";
 import Screen from "../components/Screen";
 
-const MessageDetailsScreen = ({ route }) => {
-  const messageDetails = route.params.details;
+import colors from "../config/colors";
 
-  console.log(messageDetails);
-
+export default function MessageDetilsScreen({ route, navigation }) {
+  const message = route.params;
   return (
-    <Screen>
-      <AppText>{messageDetails.message}</AppText>
+    <Screen style={styles.screen}>
+      <View style={styles.titleContainer}>
+        <AppText style={styles.title}>{message.title}</AppText>
+      </View>
+      <View style={styles.messageContainer}>
+        <ScrollView style={styles.textContainer}>
+          <AppText style={styles.text}>{message.description}</AppText>
+        </ScrollView>
+      </View>
+      <View style={styles.userInfoContainer}>
+        <AppText style={styles.userInfo}>{message.authors}</AppText>
+      </View>
     </Screen>
   );
-};
+}
 
-export default MessageDetailsScreen;
+const styles = StyleSheet.create({
+  screen: {
+    padding: 10,
+    // backgroundColor: colors.whiteTransparent,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colors.subTitle,
+  },
+  titleContainer: {
+    paddingVertical: 40,
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+    width: "100%",
+  },
+  messageContainer: {
+    marginVertical: 20,
+  },
+  textContainer: {
+    width: "100%",
+    height: 550,
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+  },
+  text: {
+    margin: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: colors.white,
+  },
+  userInfoContainer: {
+    alignSelf: "center",
+    position: "absolute",
+    bottom: 20,
+    width: "100%",
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+  },
+  userInfo: {
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 20,
+    color: colors.subTitle,
+  },
+});

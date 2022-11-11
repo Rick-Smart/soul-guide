@@ -6,32 +6,23 @@ import AppButton from "../components/AppButton";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
-    <ImageBackground
-      style={styles.ImageBackground}
-      //   blurRadius={1}
-      source={require("../assets/bell-rock-bg.jpg")}
-    >
-      <Screen style={styles.screen}>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require("../assets/logo-white-find-yourself.png")}
-            style={styles.logo}
-          />
-        </View>
+    <Screen style={styles.screen}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/logo-white-find-yourself.png")}
+          style={styles.logo}
+        />
+      </View>
 
-        <View style={styles.buttonContainer}>
-          <AppButton
-            title="Login"
-            onPress={() => navigation.navigate("Login")}
-          />
-          <AppButton
-            title="Register"
-            color="secondary"
-            onPress={() => navigation.navigate("Register")}
-          />
-        </View>
-      </Screen>
-    </ImageBackground>
+      <View style={styles.buttonContainer}>
+        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
+        <AppButton
+          title="Register"
+          color="secondary"
+          onPress={() => navigation.navigate("Register")}
+        />
+      </View>
+    </Screen>
   );
 };
 
@@ -46,6 +37,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: "100%",
+    marginBottom: 100,
   },
   logoContainer: {
     width: "100%",

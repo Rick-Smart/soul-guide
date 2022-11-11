@@ -1,12 +1,27 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import React, { useRef } from "react";
 import ImageInput from "./ImageInput";
+
+// ------------------------------------------------------------------------
+// required state/functions/props to make this work (should be in parent element/screen)
+// const [imageUris, setImageUris] = useState([]);
+// ------------------------------------------------------------------------
+// const onAddImage = (uri) => {
+//   setImageUris([...imageUris, uri]);
+// };
+// const onRemoveImage = (uri) => {
+//   setImageUris(imageUris.filter((image) => image !== uri));
+// };
+// ------------------------------------------------------------------------
+// Props: imageUris, onAddImage, onRemoveImage
+// ------------------------------------------------------------------------
 
 const ImageInputList = ({ imageUris = [], onRemoveImage, onAddImage }) => {
   const scrollView = useRef();
 
   return (
     <View>
+      <UserHeader onPress={() => navigation.navigate("Account")} />
       <ScrollView
         ref={scrollView}
         horizontal

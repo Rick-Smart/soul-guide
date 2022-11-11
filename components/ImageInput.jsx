@@ -8,18 +8,16 @@ import {
 import React, { useEffect } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
 
 import colors from "../config/colors";
 
 const ImageInput = ({ imageUri, onChangeImage }) => {
-  const requestPermission = async () => {
-    // const response = ImagePicker.requestMediaLibraryPermissionsAsync();
-    const { granted } = ImagePicker.requestMediaLibraryPermissionsAsync();
-    // if (!granted) {
-    //   alert("you must allow permissions for this module to function");
-    // }
-  };
+  // const requestPermission = async () => {
+  //   const { granted } = ImagePicker.requestMediaLibraryPermissionsAsync();
+  //   if (!granted) {
+  //     alert("you must allow permissions for this module to function");
+  //   }
+  // };
 
   useEffect(() => {
     requestPermission();

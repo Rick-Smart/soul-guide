@@ -1,13 +1,19 @@
 import { create } from "apisauce";
+import authStorage from "../auth/storage";
+
+import { LOCAL_API } from "@env";
+
+// LOCAL_API
+// "http://192.168.0.32:3001/api"
 
 const apiClient = create({
-  baseURL: "http://192.168.0.32:3001/api",
+  baseURL: LOCAL_API,
 });
 
-apiClient.get("/listings").then((response) => {
-  if (!response.problem) {
-    console.log(response.problem);
-  }
+apiClient.addAsyncRequestTransform(async (request) => {
+  const authToken = await authStorage.getToken();
+  if (!authToken) return;
+  request.headers["x-auth-token"] = authToken;
 });
 
 export default apiClient;

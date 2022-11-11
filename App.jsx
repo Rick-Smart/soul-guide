@@ -1,24 +1,56 @@
-import React, { useEffect, useState } from "react";
-import * as ImagePicker from "expo-image-picker";
-import { Image, View } from "react-native";
+import React, { useState } from "react";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
+import AuthContext from "./auth/context";
+import AppNavigator from "./navigation/AppNavigator";
 import AuthNavigator from "./navigation/AuthNavigator";
-import MessagesScreen from "./views/MessagesScreen";
-import ServiceDetailsScreen from "./views/ServiceDetailsScreen";
-import AccountScreen from "./views/AccountScreen";
-import ServicesScreen from "./views/ServicesScreen";
-import LoginScreen from "./views/LoginScreen";
-import RegisterScreen from "./views/RegisterScreen";
-import ServiceEditScreen from "./views/ServiceEditScreen";
+import authStorage from "./auth/storage";
+import AppLoading from "expo-app-loading";
 
-import Screen from "./components/Screen";
-import AppTextInput from "./components/AppTextInput";
-import AppPicker from "./components/AppPicker";
-import AppButton from "./components/AppButton";
-import ImageInput from "./components/ImageInput";
-import ImageInputList from "./components/ImageInputList";
-import TabNavigator from "./navigation/TabNavigator";
+// ------------------------------------------------------------------------
+// stand alone components for testing ONLY!
+// ------------------------------------------------------------------------
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "white",
+    // With this on the navigation transitions look dirty and poorly timed.
+    // background: "transparent",
+  },
+};
 
 export default function App() {
-  return <AuthNavigator />;
+  // ------------------------------------------------------------------------
+  // Test states ONLY!
+  // ------------------------------------------------------------------------
+  const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
+
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
+
+    setIsReady(true);
+  };
+
+  if (!isReady)
+    return (
+      <AppLoading
+        startAsync={restoreUser}
+        onFinish={() => setIsReady(true)}
+        onError={() => console.log("Error")}
+      />
+    );
+  // ------------------------------------------------------------------------
+  // Test functions ONLY!
+  // ------------------------------------------------------------------------
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={theme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
+  );
 }

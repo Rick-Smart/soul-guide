@@ -1,9 +1,13 @@
 import client from "./client";
 
 const endPoint = "/messages";
+const userMessages = "/usermessages";
 
-const getMessages = () => client.get(endPoint);
+const createMessage = (message) => client.post(endPoint, message);
+
+const getMessages = () => client.get(endPoint + userMessages);
 
 export default {
   getMessages,
+  createMessage,
 };

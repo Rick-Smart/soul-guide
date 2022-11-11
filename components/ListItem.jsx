@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
     borderRadius: 15,
+    backgroundColor: colors.whiteTransparent,
   },
   detailsContainer: {
     flex: 1,
